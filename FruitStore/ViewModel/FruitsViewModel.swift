@@ -19,18 +19,19 @@ class FruitsViewModel: ObservableObject {
     }
     
     private func fetchFruits() {
-        AF.request(fruitsURL).responseData { response in
+        AF.request(fruitsURL, method: .get)
+            .validate()
+            .responseData { response in
+                
             let json = try! JSON(data: response.data!)
             var id = 0
-
-            for item in json["list"] {
-                for fruit in json["fruits"] {
-                    if item.1.stringValue == fruit.0 {
-                        self.fruitList.append(FruitsDTO(id: id, name: item.1.stringValue, url: fruit.1["url"].stringValue))
-                    }
-                }
+                            
+            for item in json {
+                self.fruitList.append(FruitsDTO(id: id, name: item.0, url: item.1["url"].stringValue))
                 id += 1
             }
+            
+            
             let _ = self.fruitList.sort(by: <)
         }
     }

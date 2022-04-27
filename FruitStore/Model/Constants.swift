@@ -8,5 +8,5 @@
 import Foundation
 
 class Constants {
-    static let fruitsURL = "https://f986cda1-0ad8-4ef4-bf4e-5b1b4384fd8e.mock.pstmn.io/asc/v1/getFruits"
+    static let fruitsURL = "https://87d7985e-1d2c-4182-a268-7902ce5e7a0d.mock.pstmn.io/v1.1/asc/getFruit"
 }
